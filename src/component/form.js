@@ -1,23 +1,11 @@
 import React, { useState } from "react";
-// import Grid from "@material-ui/core/Grid";
 import { TextField, Button } from "@mui/material";
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
-// import FormControl from "@material-ui/core/FormControl";
-// import FormLabel from "@material-ui/core/FormLabel";
-// import RadioGroup from "@material-ui/core/RadioGroup";
-// import Radio from "@material-ui/core/Radio";
-// import Select from "@material-ui/core/Select";
-// import MenuItem from "@material-ui/core/MenuItem";
-// import Slider from "@material-ui/core/Slider";
-// import Button from "@material-ui/core/Button";
 
 function Form() {
   const defaultValues = {
-    name: "",
-    age: "",
-    sex: "",
-    os: "",
-    favoriteNumber: 0,
+    title: "",
+    author: "",
+    content: "",
   };
   const [formValues, setFormValues] = useState(defaultValues);
   function handleInputChange(e) {
@@ -34,7 +22,7 @@ function Form() {
         name="postTitle"
         label="Post title"
         type="text"
-        value={formValues.name}
+        value={formValues.title}
         onChange={handleInputChange}
       />
       <br />
@@ -43,7 +31,7 @@ function Form() {
         name="authorName"
         label="Author name"
         type="text"
-        value={formValues.age}
+        value={formValues.author}
         onChange={handleInputChange}
       />
       <br />
@@ -52,7 +40,7 @@ function Form() {
         name="content"
         label="Content"
         type="text"
-        value={formValues.age}
+        value={formValues.content}
         onChange={handleInputChange}
       />
       <br />
