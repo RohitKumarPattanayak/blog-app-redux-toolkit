@@ -11,6 +11,16 @@ const initialState = [
     title: "Slices...",
     content: "The more I say slice, the more I want pizza.",
   },
+  {
+    id: "3",
+    title: "Slices...",
+    content: "The more I say slice, the more I want pizza.",
+  },
+  {
+    id: "4",
+    title: "Slices...",
+    content: "The more I say slice, the more I want pizza.",
+  },
 ];
 export const postSlice = createSlice({
   name: "posts",

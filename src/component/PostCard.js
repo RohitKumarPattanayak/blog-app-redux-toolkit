@@ -34,7 +34,7 @@ export default function PostCard(props) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card className="postCard" sx={{ maxWidth: "35%" }}>
       <CardHeader
         // avatar={
         //   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">

@@ -50,3 +50,13 @@
 #content-input {
   height: 20vh;
 }
+
+.postCard {
+  margin-top: 3%;
+}
+.postsContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: lightsteelblue;
+  height: fit-content;
+}

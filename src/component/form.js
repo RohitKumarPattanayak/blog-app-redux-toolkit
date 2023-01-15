@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 
 function Form() {
+  let navigate = useNavigate();
+  // const history = useHistory();
   const defaultValues = {
     title: "",
     author: "",
@@ -48,7 +51,14 @@ function Form() {
         SUBMIT
       </Button>
       <br />
-      <Button variant="text" color="success">
+      <Button
+        onClick={() => {
+          // history.push("/feeds");
+          navigate("/feeds");
+        }}
+        variant="text"
+        color="success"
+      >
         POSTS
       </Button>
     </div>
