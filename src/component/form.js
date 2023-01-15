@@ -1,15 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
+import { addPost } from "../Reducers/postSlice";
+import { useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
+import Toast from "./Toast";
 
 function Form() {
-  let navigate = useNavigate();
   const defaultValues = {
     title: "",
     author: "",
     content: "",
+    img: "",
   };
+  let dispatch = useDispatch();
+  let navigate = useNavigate();
   const [formValues, setFormValues] = useState(defaultValues);
+  const [addedToast, setAddedToast] = useState(0);
   function handleInputChange(e) {
     const { name, value } = e.target;
     setFormValues({
@@ -17,11 +24,15 @@ function Form() {
       [name]: value,
     });
   }
+  function onSubmit() {
+    setAddedToast((prev) => prev + 1);
+    dispatch(addPost({ post: formValues, id: uuidv4() }));
+  }
   return (
     <div className="form">
       <TextField
         id="post-title-input"
-        name="postTitle"
+        name="title"
         label="Post title"
         type="text"
         value={formValues.title}
@@ -30,7 +41,7 @@ function Form() {
       <br />
       <TextField
         id="author-name-input"
-        name="authorName"
+        name="author"
         label="Author name"
         type="text"
         value={formValues.author}
@@ -46,7 +57,16 @@ function Form() {
         onChange={handleInputChange}
       />
       <br />
-      <Button variant="contained" color="info" type="submit">
+      <TextField
+        id="image-input"
+        name="img"
+        label="Image"
+        type="url"
+        value={formValues.img}
+        onChange={handleInputChange}
+      />
+      <br />
+      <Button onClick={onSubmit} variant="contained" color="info" type="submit">
         SUBMIT
       </Button>
       <br />
@@ -54,11 +74,12 @@ function Form() {
         onClick={() => {
           navigate("/feeds");
         }}
-        variant="text"
+        variant="outlined"
         color="success"
       >
         POSTS
       </Button>
+      <Toast added={addedToast} />
     </div>
   );
 }

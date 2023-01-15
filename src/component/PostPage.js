@@ -9,10 +9,17 @@ const PostPage = () => {
   let posts = useSelector(allPostsStore);
 
   let allPosts = posts.map((obj) => {
-    let { id, content, title } = obj;
-    return <PostCard key={id} title={title} content={content} />;
+    let { id, content, title, author, img } = obj;
+    return (
+      <PostCard
+        key={id}
+        title={title}
+        author={author}
+        content={content}
+        img={img}
+      />
+    );
   });
-  console.log(allPosts);
   return (
     <Provider store={store}>
       <Header />
@@ -23,6 +30,9 @@ const PostPage = () => {
         <center>{allPosts}</center>
         <br />
         <br />
+      </div>
+      <div style={{ height: "10vh", color: "gray", padding: "3%" }}>
+        No more posts
       </div>
     </Provider>
   );
