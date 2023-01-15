@@ -2,16 +2,15 @@ import React from "react";
 import { Provider, useSelector } from "react-redux";
 import PostCard from "./PostCard";
 import { store } from "../Store/store";
-import Header from "../component/Header";
+import Header from "./Header";
+import { allPostsStore } from "../Reducers/postSlice";
 
 const PostPage = () => {
-  let posts = useSelector((state) => state.posts);
+  let posts = useSelector(allPostsStore);
 
   let allPosts = posts.map((obj) => {
     let { id, content, title } = obj;
-    console.log(id, content, title);
-    let ele = <PostCard key={id} title={title} content={content} />;
-    return ele;
+    return <PostCard key={id} title={title} content={content} />;
   });
   console.log(allPosts);
   return (

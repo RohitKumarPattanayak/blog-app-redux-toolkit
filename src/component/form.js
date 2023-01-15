@@ -4,7 +4,6 @@ import { TextField, Button } from "@mui/material";
 
 function Form() {
   let navigate = useNavigate();
-  // const history = useHistory();
   const defaultValues = {
     title: "",
     author: "",
@@ -53,7 +52,6 @@ function Form() {
       <br />
       <Button
         onClick={() => {
-          // history.push("/feeds");
           navigate("/feeds");
         }}
         variant="text"

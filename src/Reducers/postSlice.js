@@ -8,18 +8,13 @@ const initialState = [
   },
   {
     id: "2",
-    title: "Slices...",
-    content: "The more I say slice, the more I want pizza.",
+    title: "Learning Redux Toolkit",
+    content: "I've heard good things.",
   },
   {
     id: "3",
-    title: "Slices...",
-    content: "The more I say slice, the more I want pizza.",
-  },
-  {
-    id: "4",
-    title: "Slices...",
-    content: "The more I say slice, the more I want pizza.",
+    title: "Learning Redux Toolkit",
+    content: "I've heard good things.",
   },
 ];
 export const postSlice = createSlice({
@@ -29,5 +24,7 @@ export const postSlice = createSlice({
 });
 
 export const {} = postSlice.actions;
+
+export const allPostsStore = (state) => state.posts;
 
 export default postSlice.reducer;
