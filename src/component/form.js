@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { addPost } from "../Reducers/postSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Toast from "./Toast";
+import { allUsersStore } from "../Reducers/userSlice";
 
 function Form() {
   const defaultValues = {
@@ -16,6 +17,8 @@ function Form() {
   let navigate = useNavigate();
   const [formValues, setFormValues] = useState(defaultValues);
   const [addedToast, setAddedToast] = useState(0);
+  let showSubmit = false;
+
   function handleInputChange(e) {
     const { name, value } = e.target;
     setFormValues({
@@ -23,17 +26,30 @@ function Form() {
       [name]: value,
     });
   }
+
+  let allUsers = useSelector(allUsersStore);
+  let allUserOption = allUsers.map((user) => {
+    return (
+      <option key={user.id} value={user.name}>
+        <div className="options">{user.name}</div>
+      </option>
+    );
+  });
+  console.log("form values : ", formValues);
+
+  if (formValues.title && formValues.author && formValues.content) {
+    showSubmit = true;
+  }
+
   function onSubmit() {
-    if (formValues.title && formValues.author && formValues.content) {
-      setAddedToast((prev) => prev + 1);
-      dispatch(addPost(formValues));
-      setFormValues({
-        title: "",
-        author: "",
-        content: "",
-        img: "",
-      });
-    }
+    setAddedToast((prev) => prev + 1);
+    dispatch(addPost(formValues));
+    setFormValues({
+      title: "",
+      author: "",
+      content: "",
+      img: "",
+    });
   }
   return (
     <div className="form">
@@ -46,14 +62,20 @@ function Form() {
         onChange={handleInputChange}
       />
       <br />
-      <TextField
+      <select
         id="author-name-input"
         name="author"
-        label="Author name"
-        type="text"
-        value={formValues.author}
         onChange={handleInputChange}
-      />
+        value={formValues.author}
+        style={{
+          padding: "4%",
+          border: "none",
+          borderRadius: "2%",
+        }}
+      >
+        <option style={{ display: "none" }}></option>
+        {allUserOption}
+      </select>
       <br />
       <TextField
         id="content-input"
@@ -73,7 +95,13 @@ function Form() {
         onChange={handleInputChange}
       />
       <br />
-      <Button onClick={onSubmit} variant="contained" color="info" type="submit">
+      <Button
+        onClick={onSubmit}
+        disabled={!showSubmit}
+        variant="contained"
+        color="info"
+        type="submit"
+      >
         SUBMIT
       </Button>
       <br />
