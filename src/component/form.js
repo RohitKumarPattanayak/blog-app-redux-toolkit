@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import { addPost } from "../Reducers/postSlice";
 import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
 import Toast from "./Toast";
 
 function Form() {
@@ -25,8 +24,16 @@ function Form() {
     });
   }
   function onSubmit() {
-    setAddedToast((prev) => prev + 1);
-    dispatch(addPost({ post: formValues, id: uuidv4() }));
+    if (formValues.title && formValues.author && formValues.content) {
+      setAddedToast((prev) => prev + 1);
+      dispatch(addPost(formValues));
+      setFormValues({
+        title: "",
+        author: "",
+        content: "",
+        img: "",
+      });
+    }
   }
   return (
     <div className="form">
