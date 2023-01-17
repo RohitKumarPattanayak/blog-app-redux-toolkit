@@ -1,6 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import { TextField, Button } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
+} from "@mui/material";
 import { addPost } from "../Reducers/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Toast from "./Toast";
@@ -30,9 +37,9 @@ function Form() {
   let allUsers = useSelector(allUsersStore);
   let allUserOption = allUsers.map((user) => {
     return (
-      <option key={user.id} value={user.name}>
+      <MenuItem key={user.id} value={user.name}>
         <div className="options">{user.name}</div>
-      </option>
+      </MenuItem>
     );
   });
   console.log("form values : ", formValues);
@@ -62,20 +69,19 @@ function Form() {
         onChange={handleInputChange}
       />
       <br />
-      <select
-        id="author-name-input"
-        name="author"
-        onChange={handleInputChange}
-        value={formValues.author}
-        style={{
-          padding: "4%",
-          border: "none",
-          borderRadius: "2%",
-        }}
-      >
-        <option style={{ display: "none" }}></option>
-        {allUserOption}
-      </select>
+      <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Author</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={formValues.author}
+          label="Author"
+          name="author"
+          onChange={handleInputChange}
+        >
+          {allUserOption}
+        </Select>
+      </FormControl>
       <br />
       <TextField
         id="content-input"
