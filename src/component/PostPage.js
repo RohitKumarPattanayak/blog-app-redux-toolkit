@@ -4,12 +4,12 @@ import PostCard from "./PostCard";
 import { store } from "../Store/store";
 import Header from "./Header";
 import { allPostsStore } from "../Reducers/postSlice";
+import { CssBaseline } from "@mui/material";
 
 const PostPage = () => {
   let posts = useSelector(allPostsStore);
-
-  let allPosts = posts.map((obj) => {
-    let { id, content, title, author, img } = obj;
+  let allPosts = [...posts].reverse().map((obj) => {
+    let { id, content, title, author, img, date, time } = obj;
     return (
       <PostCard
         key={id}
@@ -17,12 +17,15 @@ const PostPage = () => {
         author={author}
         content={content}
         img={img}
+        date={date}
+        time={time}
       />
     );
   });
   return (
     <Provider store={store}>
       <Header />
+      <CssBaseline />
       <div className="postsContainer">
         <br />
         <br />

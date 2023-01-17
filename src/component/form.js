@@ -42,7 +42,6 @@ function Form() {
       </MenuItem>
     );
   });
-  console.log("form values : ", formValues);
 
   if (formValues.title && formValues.author && formValues.content) {
     showSubmit = true;
@@ -87,6 +86,7 @@ function Form() {
         id="content-input"
         name="content"
         label="Content"
+        // maxRows={5}
         type="text"
         value={formValues.content}
         onChange={handleInputChange}
