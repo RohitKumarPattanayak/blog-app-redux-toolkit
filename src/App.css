@@ -56,3 +56,11 @@
   background-color: lightsteelblue;
   height: fit-content;
 }
+
+.reactionButton {
+  border: none;
+  margin-left: 1%;
+  margin-right: 1%;
+  background: transparent;
+  width: 43px;
+}
