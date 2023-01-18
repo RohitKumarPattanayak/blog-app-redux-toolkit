@@ -14,6 +14,7 @@ import Toast from "./Toast";
 import { allUsersStore } from "../Reducers/userSlice";
 
 function Form() {
+  console.log("hi");
   const defaultValues = {
     title: "",
     author: "",
