@@ -29,6 +29,11 @@ export const postSlice = createSlice({
         };
       },
     },
+    addReactionCount: (state, data) => {
+      let updateOnj = state.find((obj) => obj.id === data.userId);
+      updateOnj.reactions[data.reactionName]++;
+      return [...state, { id: data.userId, ...updateOnj }];
+    },
   },
 });
 

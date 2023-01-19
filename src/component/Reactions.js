@@ -1,14 +1,21 @@
 const reactionEmoji = {
-  thumbsUp: "👍",
+  like: "👍",
   wow: "😮",
   heart: "❤️",
 };
 
-const Reactions = ({ post }) => {
+const Reactions = (props) => {
+  console.log(props);
   const reactionButtons = Object.entries(reactionEmoji).map(([name, emoji]) => {
     return (
-      <button key={name} type="button" className="reactionButton">
-        {emoji} 1
+      <button
+        key={name}
+        id={props.userId}
+        name={name}
+        type="button"
+        className="reactionButton"
+      >
+        {emoji} {props.Reactions[name]}
       </button>
     );
   });

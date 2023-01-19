@@ -9,16 +9,18 @@ import { CssBaseline } from "@mui/material";
 const PostPage = () => {
   let posts = useSelector(allPostsStore);
   let allPosts = [...posts].reverse().map((obj) => {
-    let { id, content, title, author, img, date, time } = obj;
+    let { id, content, title, author, img, date, time, reactions } = obj;
     return (
       <PostCard
         key={id}
+        id={id}
         title={title}
         author={author}
         content={content}
         img={img}
         date={date}
         time={time}
+        reactions={reactions}
       />
     );
   });

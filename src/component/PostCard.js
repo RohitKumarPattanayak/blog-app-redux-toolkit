@@ -35,7 +35,7 @@ export default function PostCard(props) {
         </Typography>
       </CardContent>
       <CardActions style={{ position: "relative" }} disableSpacing>
-        <Reactions />
+        <Reactions Reactions={props.reactions} userID={props.id} />
         <h6
           style={{
             position: "absolute",

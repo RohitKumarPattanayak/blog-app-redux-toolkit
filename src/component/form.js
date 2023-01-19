@@ -19,6 +19,11 @@ function Form() {
     author: "",
     content: "",
     img: "",
+    reactions: {
+      like: 0,
+      wow: 0,
+      heart: 0,
+    },
   };
   let dispatch = useDispatch();
   let navigate = useNavigate();
